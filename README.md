@@ -157,6 +157,11 @@ export CORSANYWHERE_RATELIMIT='50 3 my.example.com my2.example.com'
 node server.js
 ```
 
+### Docker
+
+```bash
+docker build -t cors-anywhere .
+```
 
 ## License
 
