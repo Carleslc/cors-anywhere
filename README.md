@@ -160,7 +160,11 @@ node server.js
 ### Docker
 
 ```bash
+# Build image
 docker build -t cors-anywhere .
+
+# Run on port 80
+docker run -p 80:8080 -d cors-anywhere
 ```
 
 ## License
