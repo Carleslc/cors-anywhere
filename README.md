@@ -164,7 +164,7 @@ node server.js
 docker build -t cors-anywhere .
 
 # Run on port 80
-docker run -p 80:8080 -d cors-anywhere
+docker run --name cors-anywhere -p 80:8080 -e CORSANYWHERE_RATELIMIT='50 3 my.example.com' -d cors-anywhere
 ```
 
 ## License
