@@ -19,13 +19,8 @@ to the browser, which can choose to follow the redirect (handled automatically b
 The requested URL is available in the X-Request-URL response header.
 The final URL, after following all redirects, is available in the X-Final-URL response header.
 
-
 To prevent the use of the proxy for casual browsing, the API requires either the Origin
 or the X-Requested-With header to be set. To avoid unnecessary preflight (OPTIONS) requests,
 it's recommended to not manually set these headers in your code.
 
-Demo          :   https://robwu.nl/cors-anywhere.html
-Source code   :   https://github.com/Rob--W/cors-anywhere/
-Documentation :   https://github.com/Rob--W/cors-anywhere/#documentation
-
-Fork: https://github.com/Carleslc/cors-anywhere
+Source code   : https://github.com/Carleslc/cors-anywhere
