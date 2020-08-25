@@ -29,7 +29,7 @@ const removeHeaders = [
   'x-request-start',
 ];
 
-const allowCookies = process.env.COOKIES === 'true';
+const allowCookies = !!process.env.COOKIES;
 
 if (allowCookies) {
   console.log('Cookies are enabled');
