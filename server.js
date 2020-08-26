@@ -9,6 +9,7 @@ var port = process.env.PORT || 8080;
 // use originWhitelist instead.
 var originBlacklist = parseEnvList(process.env.CORSANYWHERE_BLACKLIST);
 var originWhitelist = parseEnvList(process.env.CORSANYWHERE_WHITELIST);
+
 function parseEnvList(env) {
   if (!env) {
     return [];
@@ -21,7 +22,7 @@ var checkRateLimit = require('./lib/rate-limit')(process.env.CORSANYWHERE_RATELI
 
 var cors_proxy = require('./lib/cors-anywhere');
 
-const removeHeaders = [
+var removeHeaders = [
   // Strip Heroku-specific headers
   'x-heroku-queue-wait-time',
   'x-heroku-queue-depth',
@@ -29,7 +30,7 @@ const removeHeaders = [
   'x-request-start',
 ];
 
-const allowCookies = !!process.env.COOKIES;
+var allowCookies = !!process.env.COOKIES;
 
 if (allowCookies) {
   console.log('Cookies are enabled');
@@ -43,7 +44,7 @@ cors_proxy.createServer({
   originWhitelist: originWhitelist,
   requireHeader: ['origin', 'x-requested-with'],
   checkRateLimit: checkRateLimit,
-  removeHeaders,
+  removeHeaders: removeHeaders,
   redirectSameOrigin: true,
   cookies: allowCookies,
   httpProxyOptions: {
