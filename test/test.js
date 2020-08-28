@@ -1137,7 +1137,7 @@ describe('cookies', function() {
 
   it('Set cookies', function(done) {
     request(cors_anywhere)
-      .get('/example.com/setcookie with permitted origin')
+      .get('/example.com/setcookie')
       .set('Origin', 'https://permitted.origin.test')
       .expect('Set-Cookie', 'x')
       .expect('Set-Cookie2', 'y')
