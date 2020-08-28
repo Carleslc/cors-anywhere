@@ -6,11 +6,11 @@
   "author": "Rob Wu <rob@robwu.nl>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Rob--W/cors-anywhere.git"
+    "url": "https://github.com/Carleslc/cors-anywhere.git"
   },
   "bugs": {
-    "url": "https://github.com/Rob--W/cors-anywhere/issues/",
-    "email": "rob@robwu.nl"
+    "url": "https://github.com/Carleslc/cors-anywhere/issues/",
+    "email": "lazaro.costa.carles@gmail.com"
   },
   "keywords": [
     "cors",
