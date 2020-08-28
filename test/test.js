@@ -1124,3 +1124,50 @@ describe('helpFile', function() {
       .expect(500, '', done);
   });
 });
+
+describe('cookies', function() {
+  before(function() {
+    cors_anywhere = createServer({
+      originWhitelist: ['https://permitted.origin.test'],
+      cookies: true,
+    });
+    cors_anywhere_port = cors_anywhere.listen(0).address().port;
+  });
+  after(stopServer);
+
+  it('Set cookies', function(done) {
+    request(cors_anywhere)
+      .get('/example.com/setcookie with permitted origin')
+      .set('Origin', 'https://permitted.origin.test')
+      .expect('Set-Cookie', 'x')
+      .expect('Set-Cookie2', 'y')
+      .expect('Set-Cookie3', 'z')
+      .expect(200, done);
+  });
+
+  it('GET /example.com allow origin', function(done) {
+    request(cors_anywhere)
+      .get('/example.com/')
+      .set('Origin', 'https://permitted.origin.test')
+      .expect('Access-Control-Allow-Origin', 'https://permitted.origin.test')
+      .expect('Access-Control-Allow-Credentials', 'true')
+      .expect(200, done);
+  });
+
+  it('GET /example.com without permitted origin', function(done) {
+    request(cors_anywhere)
+      .get('/example.com/')
+      .set('Origin', 'http://permitted.origin.test') // Note: different scheme!
+      .expect('Access-Control-Allow-Origin', '*')
+      .expect('Access-Control-Allow-Credentials', 'false')
+      .expect(403, done);
+  });
+
+  it('GET /example.com without origin', function(done) {
+    request(cors_anywhere)
+      .get('/example.com/')
+      .expect('Access-Control-Allow-Origin', '*')
+      .expect('Access-Control-Allow-Credentials', 'false')
+      .expect(403, done);
+  });
+});
